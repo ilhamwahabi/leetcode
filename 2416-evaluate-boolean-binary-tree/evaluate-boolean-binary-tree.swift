@@ -14,9 +14,7 @@
  * }
  */
 class Solution {
-    func evaluateTree(_ root: TreeNode?) -> Bool {
-        // if (root == nil) return
-        
+    func evaluateTree(_ root: TreeNode?) -> Bool {        
         if (root!.val == 0) {return false}
         else if (root!.val == 1) {return true}
         else if (root!.val == 2) {
