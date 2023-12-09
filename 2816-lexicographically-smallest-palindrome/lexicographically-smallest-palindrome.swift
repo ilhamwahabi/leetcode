@@ -12,10 +12,8 @@ class Solution {
 
         while (a <= b) {
             if (res[a] < res[b]) {
-                print("a")
                 res[b] = res[a]
             } else if (res[a] > res[b]) {
-                print("b")
                 res[a] = res[b]
             }
 
