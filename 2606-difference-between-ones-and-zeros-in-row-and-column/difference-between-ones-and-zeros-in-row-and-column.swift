@@ -21,11 +21,14 @@ class Solution {
         var diff: [[Int]] = []
         for i in 0..<grid.count {
             var rows: [Int] = []
+            let rowLength = grid[i].count
+            let colLength = grid.count
+            let oneInRow = oneInRows[i]!
+
             for j in 0..<grid[i].count {
                 rows.append(
-                    oneInRows[i]! + oneInCols[j]!
-                    - (grid[i].count - oneInRows[i]!)
-                    - (grid.count - oneInCols[j]!)
+                    oneInRow + oneInCols[j]!
+                    - (rowLength - oneInRow) - (colLength - oneInCols[j]!)
                 )
             }
             diff.append(rows)
