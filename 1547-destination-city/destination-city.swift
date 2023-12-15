@@ -6,25 +6,25 @@ class Solution {
         // assign 2nd element as a key with value nil (if not exist yet in map)
         // return key that value nil
 
-        var map: [String:[String]] = [:]
+        var map: [String:Int] = [:]
 
         for path in paths {
             let origin = path[0]
             let destination = path[1]
 
             if (map[origin] == nil) {
-                map[origin] = [destination]
+                map[origin] = 1
             } else {
-                map[origin]!.append(destination)
+                map[origin]! += 1
             }
 
             if (map[destination] == nil) {
-                map[destination] = []
+                map[destination] = 0
             }
         }
 
         for (key,value) in map {
-            if (value.count == 0) {
+            if (value == 0) {
                 return key
             }
         }
