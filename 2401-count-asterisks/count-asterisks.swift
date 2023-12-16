@@ -1,6 +1,6 @@
 class Solution {
     func countAsterisks(_ s: String) -> Int {
-        var parts = s.components(separatedBy: "|")
+        let parts = s.components(separatedBy: "|")
 
         var count = 0
         for i in stride(from: 0, to: parts.count, by: 2) {
