@@ -64,11 +64,7 @@
 
 //         for i in 0..<foods.count {
 //             self.foods[foods[i]] = ratings[i]
-//             if (self.cuisines[cuisines[i]] == nil) {
-//                 self.cuisines[cuisines[i]] = [foods[i]]
-//             } else {
-//                 self.cuisines[cuisines[i]]!.append(foods[i])
-//             }
+//             self.cuisines[cuisines[i], default: []].append(foods[i])
 //         }
 //     }
     
@@ -91,62 +87,58 @@
 
 //         // return foodname
 
-//         var idx = 0
+// // if let foodsInCuisine = cuisines[cuisine],
+// //             let highestRatedFood = foodsInCuisine.max(by: {
+// //                 foods[$0] ?? 0 < foods[$1] ?? 0 ||
+// //                 (foods[$0] ?? 0 == foods[$1] ?? 0 && $0 < $1)
+// //             }) {
+// //             return highestRatedFood
+// //         }
 
-//         for i in 1..<cuisines[cuisine]!.count {
-//             let currFood = cuisines[cuisine]![i]
-//             let prevFood = cuisines[cuisine]![idx]
-
-//             if (foods[currFood]! > foods[prevFood]!) {
-//                 idx = i
-//             } else if (foods[currFood]! == foods[prevFood]! && currFood < prevFood) {
-//                 idx = i
-//             }
-//         }
-
-//         return cuisines[cuisine]![idx]
+// //         // Handle the case where either cuisines[cuisine] is nil or max() returns nil
+// //         return "" 
 //     }
 // }
 
- class FoodRatings {
-    var foodData: [String: (cuisine: String, rating: Int)] = [:]
+//  class FoodRatings {
+//     var foodData: [String: (cuisine: String, rating: Int)] = [:]
 
-    init(_ foods: [String], _ cuisines: [String], _ ratings: [Int]) {
-        guard foods.count == cuisines.count && foods.count == ratings.count else {
-            fatalError("Input arrays must have the same length")
-        }
+//     init(_ foods: [String], _ cuisines: [String], _ ratings: [Int]) {
+//         guard foods.count == cuisines.count && foods.count == ratings.count else {
+//             fatalError("Input arrays must have the same length")
+//         }
 
-        for i in 0..<foods.count {
-            foodData[foods[i]] = (cuisine: cuisines[i], rating: ratings[i])
-        }
-    }
+//         for i in 0..<foods.count {
+//             foodData[foods[i]] = (cuisine: cuisines[i], rating: ratings[i])
+//         }
+//     }
 
-    func changeRating(_ food: String, _ newRating: Int) {
-        guard let foodInfo = foodData[food] else {
-            return // Food not found
-        }
+//     func changeRating(_ food: String, _ newRating: Int) {
+//         guard let foodInfo = foodData[food] else {
+//             return // Food not found
+//         }
 
-        foodData[food] = (cuisine: foodInfo.cuisine, rating: newRating)
-    }
+//         foodData[food] = (cuisine: foodInfo.cuisine, rating: newRating)
+//     }
 
-    func highestRated(_ cuisine: String) -> String {
-        var highestRatedFood = ""
-        var highestRating = Int.min
+//     func highestRated(_ cuisine: String) -> String {
+//         var highestRatedFood = ""
+//         var highestRating = Int.min
 
-        for (food, info) in foodData {
-            if info.cuisine == cuisine {
-                if info.rating > highestRating {
-                    highestRating = info.rating
-                    highestRatedFood = food
-                } else if info.rating == highestRating && food < highestRatedFood {
-                    highestRatedFood = food
-                }
-            }
-        }
+//         for (food, info) in foodData {
+//             if info.cuisine == cuisine {
+//                 if info.rating > highestRating {
+//                     highestRating = info.rating
+//                     highestRatedFood = food
+//                 } else if info.rating == highestRating && food < highestRatedFood {
+//                     highestRatedFood = food
+//                 }
+//             }
+//         }
 
-        return highestRatedFood
-    }
-}
+//         return highestRatedFood
+//     }
+// }
 
 /**
  * Your FoodRatings object will be instantiated and called as such:
@@ -154,3 +146,35 @@
  * obj.changeRating(food, newRating)
  * let ret_2: String = obj.highestRated(cuisine)
  */
+
+ class FoodRatings {
+    var foods: [String: (cuisine: String, rating: Int)] = [:]
+
+    init(_ foods: [String], _ cuisines: [String], _ ratings: [Int]) {
+        for i in 0..<foods.count {
+            self.foods[foods[i]] = (cuisine: cuisines[i], rating: ratings[i])
+        }
+    }
+    
+    func changeRating(_ food: String, _ newRating: Int) {
+        foods[food]!.rating = newRating
+    }
+    
+    func highestRated(_ cuisine: String) -> String {
+        var rating = 0
+        var name = ""
+
+        for (food, info) in foods {
+            if (info.cuisine == cuisine) {
+                if (info.rating > rating) {
+                    rating = info.rating
+                    name = food
+                } else if (info.rating == rating && food < name) {
+                    name = food
+                }
+            }
+        }
+
+        return name
+    }
+}
