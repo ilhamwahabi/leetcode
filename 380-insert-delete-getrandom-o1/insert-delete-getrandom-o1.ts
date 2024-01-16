@@ -21,7 +21,10 @@ class RandomizedSet {
     }
 
     getRandom(): number {
-        return parseInt(Object.keys(this.set)[Math.floor(Math.random() * this.count)])
+        return parseInt(
+            Object.keys(this.set)
+            [Math.floor(Math.random() * this.count)]
+        )
     }
 }
 
