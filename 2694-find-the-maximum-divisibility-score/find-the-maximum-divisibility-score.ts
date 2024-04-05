@@ -17,7 +17,5 @@ function maxDivScore(nums: number[], divisors: number[]): number {
         }
     }
 
-    console.log(max, divisor)
-
     return divisor
 };
