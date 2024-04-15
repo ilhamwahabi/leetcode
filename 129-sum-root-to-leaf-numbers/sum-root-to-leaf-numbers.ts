@@ -16,8 +16,7 @@ function sumNumbers(root: TreeNode | null): number {
     function traverse(root: TreeNode | null, prev = "") {
         if (root.left === null && root.right === null) {
             return prev + String(root.val)
-        }
-        if (root.left !== null && root.right === null) {
+        } else if (root.left !== null && root.right === null) {
             return parseInt(traverse(root.left, prev + String(root.val)))
         } else if (root.left === null && root.right !== null) {
             return parseInt(traverse(root.right, prev + String(root.val)))
@@ -27,5 +26,5 @@ function sumNumbers(root: TreeNode | null): number {
         }
     }
 
-    return parseInt(traverse(root))
+    return traverse(root)
 };
