@@ -1,9 +1,7 @@
 function isSubstringPresent(s: string): boolean {
-    const r = s.split("").reverse().join("")
-
     for (let i = 0; i < s.length - 1; i++) {
-        for (let j = 0; j < r.length - 1; j++) {
-            if (s[i] === r[j] && s[i+1] === r[j+1]) return true
+        for (let j = 0; j < s.length - 1; j++) {
+            if (s[i] === s[s.length - j - 1] && s[i+1] === s[s.length - j - 2]) return true
         }
     }
 
