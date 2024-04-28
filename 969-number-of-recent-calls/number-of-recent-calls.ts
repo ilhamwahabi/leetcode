@@ -1,5 +1,6 @@
 class RecentCounter {
     request = []
+    mark = 0
 
     constructor() {
         
@@ -7,14 +8,14 @@ class RecentCounter {
 
     ping(t: number): number {
         this.request.push(t)
-
-        let count = 0
         for (let i = 0; i < this.request.length; i++) {
-            if (this.request[i] >= t - 3000 && this.request[i] <= t) {
-                count++
+            if (this.request[i] >= t - 3000) {
+                this.mark = i
+                break
             }
         }
-        return count
+
+        return this.request.length - this.mark
     }
 }
 
