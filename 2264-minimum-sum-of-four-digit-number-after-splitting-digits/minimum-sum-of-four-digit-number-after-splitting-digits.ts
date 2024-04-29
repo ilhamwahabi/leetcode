@@ -5,8 +5,6 @@ function minimumSum(num: number): number {
     // 3. add the rest behind them
 
     const digits = []
-    let min1 = Infinity
-    let min2 = Infinity
     for (const digit of String(num)) {
         digits.push(digit)
     }
