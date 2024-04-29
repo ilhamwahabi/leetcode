@@ -17,9 +17,13 @@ function countSymmetricIntegers(low: number, high: number): number {
             const right = digitSum(parseInt(stringified.slice(stringified.length / 2)))
 
             if (left === right) counter++
+            i++
+        } else {
+            // 1 -> 1 * 10 / 1 = 10
+            // 5 -> 5 * 10 / 5 = 10
+            // 100 -> 100 * 1000 / 100 = 1000
+            i = Math.pow(10, stringified.length)
         }
-    
-        i++
     }
 
     return counter
