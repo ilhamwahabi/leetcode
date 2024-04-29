@@ -1,22 +1,18 @@
 class MyHashSet {
-    hashset = {}
-
-    constructor() {
-        
-    }
+    hashset = []
 
     add(key: number): void {
-        this.hashset[key] = true
+        this.hashset[key] = key
     }
 
     remove(key: number): void {
-        if (this.hashset[key]) {
-            delete this.hashset[key]
+        if (this.contains(key)) {
+            this.hashset[key] = undefined
         }
     }
 
     contains(key: number): boolean {
-        return this.hashset[key] || false
+        return this.hashset[key] !== undefined
     }
 }
 
