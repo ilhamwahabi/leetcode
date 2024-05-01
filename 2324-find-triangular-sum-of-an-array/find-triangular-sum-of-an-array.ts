@@ -5,14 +5,14 @@ function triangularSum(nums: number[]): number {
     // 4. Return n[0]
 
     let n = [...nums]
+    let arr = []
     while (n.length > 1) {
-        const arr = []
-
         for (let i = 1; i < n.length; i++) {
             arr.push((n[i] + n[i-1]) % 10)
         }
 
-        n = arr
+        n = [...arr]
+        arr = []
     }
     return n[0]
 };
