@@ -1,18 +1,19 @@
 function kthFactor(n: number, k: number): number {
-    // 1. Loop from 1 to n/2
-    // 2. If result.length === k, return it
-    // 3. Else false
+    let j = k
 
-    const result = [1]
-
-    for (let i = 2; i <= n / 2; i++) {
+    for (let i = 1; i < Math.sqrt(n); i++) {
         if (n % i === 0) {
-            result.push(i)
-
-            if (result.length === k) return i
+            j--
+            if (j === 0) return i
         }
     }
 
-    result.push(n)
-    return result[k - 1] || -1
+    for (let i = Math.floor(Math.sqrt(n)); i >= 1; i--) {
+        if (n % Math.floor(n / i) === 0) {
+            j--
+            if (j === 0) return n / i
+        }
+    }
+
+    return -1
 };
