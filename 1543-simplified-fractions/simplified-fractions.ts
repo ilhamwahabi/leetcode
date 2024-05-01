@@ -15,6 +15,6 @@ function simplifiedFractions(n: number): string[] {
 };
 
 function findGCD(a: number, b: number): number {
-    if (a % b === 0) return b
+    if (a === 0) return b
     return findGCD(b % a, a)
 }
