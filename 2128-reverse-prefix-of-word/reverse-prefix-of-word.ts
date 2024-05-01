@@ -4,14 +4,10 @@ function reversePrefix(word: string, ch: string): string {
 
     let i = 0
     while (i < word.length && foundIndex === -1) {
-        if (word[i] === ch) {
-            foundIndex = i
-            reversed = word[i] + reversed + word.slice(i + 1)
-        } else {
-            reversed = word[i] + reversed
-        }
+        if (word[i] === ch) foundIndex = i
+        reversed = word[i] + reversed
         i++
     }
 
-    return foundIndex === -1 ? word : reversed
+    return foundIndex === -1 ? word : reversed + word.slice(i)
 };
