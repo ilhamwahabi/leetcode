@@ -1,20 +1,9 @@
 function coloredCells(n: number): number {
-    // 1=1 +4
-    // 2=5 +8
-    // 3=13 +12
-    // 4=25 +16
-    // 5=41
+    // 1=1  +4  . 1^2 + 0^2
+    // 2=5  +8  . 2^2 + 1^2
+    // 3=13 +12 . 3^2 + 2^2
+    // 4=25 +16 . 4^2 + 3^2
+    // 5=41     . 5^2 + 4^2
 
-    // 1. Iterate from 1 to n
-    // 2. Add it by 4 and accumulate that 4 again
-
-    let total = 1
-    let acc = 4
-
-    for (let i = 2; i <= n; i++) {
-        total += acc
-        acc += 4
-    }
-
-    return total
+    return Math.pow(n, 2) + Math.pow(n - 1, 2)
 };
