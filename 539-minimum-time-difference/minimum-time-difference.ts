@@ -25,11 +25,11 @@ function findMinDifference(timePoints: string[]): number {
 };
 
 function timeDifference(a: string, b: string): number {
-    let minA = parseInt(a.slice(0, 2)) * 60 + parseInt(a.slice(3, 5))
-    let minB = parseInt(b.slice(0, 2)) * 60 + parseInt(b.slice(3, 5))
+    const minA = parseInt(a.slice(0, 2)) * 60 + parseInt(a.slice(3, 5))
+    const minB = parseInt(b.slice(0, 2)) * 60 + parseInt(b.slice(3, 5))
 
-    let biggest = Math.max(minA, minB)
-    let smallest = Math.min(minA, minB)
+    const biggest = Math.max(minA, minB)
+    const smallest = Math.min(minA, minB)
 
     const full = 24 * 60
     return Math.min(biggest - smallest, full - biggest + smallest)
