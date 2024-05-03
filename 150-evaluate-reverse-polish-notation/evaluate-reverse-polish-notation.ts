@@ -1,31 +1,29 @@
 function evalRPN(tokens: string[]): number {
-    // 1. Base: tokens.length === 0 then return tokens[0]
-    // 2. Iterate tokens, get slice of three items
-    // 3. If the last item in slice is operand, operand those 2 previous item, keep i, else++
+    // 1. Push all elements into stack, if we counter operands, pop the last 2 and do ops
+    // 2. Push the result to stack
+    // 3. Iterate until tokens.length
 
-    let i = 0
-    while (tokens.length > 1) {
-        const slice = tokens.slice(i, i + 3)
+    const stack = []
 
-        if (isNaN(parseInt(slice[1]))) {
-            i--
-        } else if (isNaN(parseInt(slice[2]))) {
-            let result = 0
+    for (let i = 0; i < tokens.length; i++) {
+        let item: number | string = tokens[i]
 
-            if (slice[2] === "+") result = parseInt(slice[0]) + parseInt(slice[1])
-            if (slice[2] === "-") result = parseInt(slice[0]) - parseInt(slice[1])
-            if (slice[2] === "*") result = parseInt(slice[0]) * parseInt(slice[1])
-            if (slice[2] === "/") {
-                const res = parseInt(slice[0]) / parseInt(slice[1])
-                if (res < 0) result = Math.ceil(res)
-                else result = Math.floor(res)
+        if (isNaN(parseInt(tokens[i]))) {
+            const second = stack.pop()
+            const first = stack.pop()
+
+            if (tokens[i] === "+") item = parseInt(first) + parseInt(second)
+            if (tokens[i] === "-") item = parseInt(first) - parseInt(second)
+            if (tokens[i] === "*") item = parseInt(first) * parseInt(second)
+            if (tokens[i] === "/") {
+                const result = parseInt(first) / parseInt(second)
+                if (result < 0) item = Math.ceil(result)
+                else item = Math.floor(result)
             }
-
-            tokens.splice(i, 3, `${result}`)
-        } else {
-            i++
         }
+
+        stack.push(`${item}`)
     }
 
-    return parseInt(tokens[0])
+    return parseInt(stack[0])
 };
