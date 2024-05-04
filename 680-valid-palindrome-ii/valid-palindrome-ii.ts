@@ -12,12 +12,11 @@ function validPalindrome(s: string): boolean {
             a++
             z--
         } else {
-            if (s[a+1] === s[z] && !del && isPalindrome(s.slice(a+1, z+1))) {
-                a++
-                del = true
-            } else if (s[a] === s[z-1] && !del && isPalindrome(s.slice(a, z))) {
-                z--
-                del = true
+            if (
+                (s[a+1] === s[z] && !del && isPalindrome(s.slice(a+1, z+1))) ||
+                (s[a] === s[z-1] && !del && isPalindrome(s.slice(a, z)))
+            ) {
+                return true
             } else {
                 return false
             }
