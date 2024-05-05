@@ -6,11 +6,8 @@ function maximumTime(time: string): string {
         if (time[i] !== "?" || time[i] === ":") res += time[i]
         else {
             if (i === 0) {
-                if (time[1] === "?") res+= 2
-                else {
-                    if (parseInt(time[1]) <= 3) res += 2
-                    else res += 1
-                }
+                if (time[1] === "?" || (time[1] !== "?" && parseInt(time[1]) <= 3)) res+= 2
+                else res += 1
             }
             if (i === 1) {
                 if (res[0] === "2") res += "3"
