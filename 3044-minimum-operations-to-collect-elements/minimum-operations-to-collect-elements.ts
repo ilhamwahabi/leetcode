@@ -3,17 +3,15 @@ function minOperations(nums: number[], k: number): number {
     // Iterate nums while nums.length === 0 and observe > 0, count step
 
     const map = {}
-    for (let i = 1; i <= k; i++) map[i] = true
-
     let step = 0
     let observe = k
     while (nums.length > 0 && observe > 0) {
         const el = nums.pop()
         step++
 
-        if (map[el]) {
+        if (el <= k && map[el] === undefined) {
             observe--
-            delete map[el]
+            map[el] = true
         }
     }
 
