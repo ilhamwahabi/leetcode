@@ -9,16 +9,11 @@ function largestSumAfterKNegations(nums: number[], k: number): number {
     nums.sort((a, b) => Math.abs(b)-Math.abs(a))
 
     let x = k
-
     let sum = 0
     nums.forEach(num => {
-        if (x > 0) {
-            if (num < 0) {
-                sum += num * -1
-                x--
-            } else {
-                sum += num
-            }
+        if (x > 0 && num < 0) {
+            sum += num * -1
+            x--
         } else {
             sum += num
         }
