@@ -15,11 +15,10 @@ function removeNodes(head: ListNode | null): ListNode | null {
     // Iterate from back, find each maximum value so far
     // Make it node
 
-    let curr = head
     let stack = []
-    while (curr) {
-        stack.push(curr.val)
-        curr = curr.next
+    while (head) {
+        stack.push(head.val)
+        head = head.next
     }
 
     let max = 0
@@ -29,7 +28,7 @@ function removeNodes(head: ListNode | null): ListNode | null {
 
         if (val >= max) {
             max = val
-            c = new ListNode(val, c || null)
+            c = new ListNode(val, c)
         }
     }
     return c
