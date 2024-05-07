@@ -11,26 +11,24 @@
  */
 
 function doubleIt(head: ListNode | null): ListNode | null {
-    // Store each head in stack
-    // Pop them and times by 2, store if it more than 9
-
-    const stack = []
+    // Iterate while it have curr and curr.next
+    // Times both of them by 2, if next is > 10, add 1 to curr, if curr > 10
 
     let curr = head
+    let prev = null
     while (curr) {
-        stack.push(curr)
+        const double = curr.val * 2
+        const carry = Math.floor(double / 10)
+
+        if (carry > 0) {
+            if (prev === null) head = new ListNode(carry, head)
+            else prev.val = prev.val + carry
+        }
+
+        curr.val = double % 10
+        prev = curr
         curr = curr.next
     }
 
-    let prev = 0
-    while (stack.length > 0) {
-        const item = stack.pop()
-        const val = (item.val * 2) + (prev / 10)
-
-        prev = val - (val % 10)
-        item.val = val % 10
-    }
-
-    if (prev > 0) return new ListNode(prev / 10, head)
     return head
 };
