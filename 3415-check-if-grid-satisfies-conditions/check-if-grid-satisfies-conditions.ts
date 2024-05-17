@@ -1,0 +1,10 @@
+function satisfiesConditions(grid: number[][]): boolean {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i+1]?.[j] !== undefined && grid[i][j] !== grid[i+1][j]) return false
+            if (grid[i]?.[j+1] !== undefined && grid[i][j] === grid[i][j+1]) return false
+        }
+    }
+
+    return true
+};
