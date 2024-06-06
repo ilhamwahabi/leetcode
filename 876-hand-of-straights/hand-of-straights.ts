@@ -6,7 +6,6 @@ function isNStraightHand(hand: number[], groupSize: number): boolean {
     if (hand.length % groupSize !== 0) return false
 
     hand.sort((a,b) => a-b)
-    console.log(hand)
 
     const map: { [key: number]: boolean } = {}
     let i = 0
