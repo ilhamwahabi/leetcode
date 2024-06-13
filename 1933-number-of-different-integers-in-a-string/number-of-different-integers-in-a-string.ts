@@ -4,6 +4,7 @@ function numDifferentIntegers(word: string): number {
     // Return total map key
 
     const map = {}
+    let count = 0
 
     let num = ""
     for (let i = -1; i < word.length + 1; i++) {
@@ -19,11 +20,14 @@ function numDifferentIntegers(word: string): number {
             }
         } else {
             if (num.length > 0) {
-                map[num] = true
+                if (!map[num]) {
+                    count++
+                    map[num] = true
+                }
                 num = ""
             }
         }
     }
  
-    return Object.keys(map).length
+    return count
 };
