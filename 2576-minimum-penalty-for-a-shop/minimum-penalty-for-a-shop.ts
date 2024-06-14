@@ -17,15 +17,12 @@ function bestClosingTime(customers: string): number {
         const prev = prevY * 1 + prevN * -1
         const next = nextY * -1 + nextN * 1
 
-        console.log(i, prev + next)
-
         if (prev + next > max) {
             max = prev + next
             idx = i
         }
 
-        const customer = customers[i]
-        if (customer === "Y") {
+        if (customers[i] === "Y") {
             prevY++
             nextY--
         } else {
