@@ -37,8 +37,6 @@ function countValidWords(sentence: string): number {
             }
         }
 
-        console.log(word)
-
         return true
     }).length
 };
