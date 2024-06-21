@@ -13,7 +13,10 @@ function minimumRecolors(blocks: string, k: number): number {
         if (blocks[i] === "W") current++
         if (blocks[i - k] === "W") current--
 
-        if (current < step) step = current
+        if (current < step) {
+            step = current
+            if (step === 0) break
+        }
     }
 
     return step
