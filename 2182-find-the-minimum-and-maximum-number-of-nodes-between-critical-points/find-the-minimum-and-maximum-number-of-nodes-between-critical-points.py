@@ -9,6 +9,7 @@ class Solution:
 
         curr = head
         loc = 0
+        shortest = None
         while curr is not None and curr.next is not None and curr.next.next is not None:
             if (
                 (curr.val < curr.next.val and curr.next.val > curr.next.next.val) or
@@ -18,10 +19,9 @@ class Solution:
             loc += 1
             curr = curr.next
 
-        if len(distances) <= 1: return [-1, -1] 
+            if len(distances) > 1:
+                if shortest == None: shortest = distances[-1] - distances[-2]
+                else: shortest = min([shortest, distances[-1] - distances[-2]])
 
-        shortest = None
-        for i in range(1, len(distances)):
-            if shortest == None: shortest = distances[i] - distances[i-1]
-            else: shortest = min([shortest, distances[i] - distances[i-1]])
+        if shortest is None: return [-1, -1] 
         return [shortest, distances[-1] - distances[0]]
