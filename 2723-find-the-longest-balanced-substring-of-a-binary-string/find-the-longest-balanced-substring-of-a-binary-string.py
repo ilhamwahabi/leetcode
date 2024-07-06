@@ -1,4 +1,6 @@
 class Solution:
+    # Time: linear, O(n)
+    # Space: constant, O(1)
     def findTheLongestBalancedSubstring(self, s: str) -> int:
         # If we found 0, count it
         # Then if we found 1, count it
