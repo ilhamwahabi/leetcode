@@ -12,9 +12,7 @@ class Solution:
         for customer in customers:
             arrival, time = customer
 
-            if accumulated == 0: accumulated = arrival
             accumulated = max(accumulated, arrival) + time
-
             waiting += max(accumulated - arrival, time)
 
         return waiting / len(customers)
