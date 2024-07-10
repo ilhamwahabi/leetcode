@@ -7,9 +7,7 @@ class Solution:
 
         res = -1
         acc = 0
-        for i in range(len(nums)):
-            num = nums[i]
-
+        for num in nums:
             if acc > num: res = acc + num
             acc += num
 
