@@ -19,8 +19,7 @@ class Solution:
             if char == "(":
                 stack.append("")
             elif char == ")":
-                stack[-1] = self.reverseStr(stack[-1])
-                stack[-2] += stack[-1]
+                stack[-2] += self.reverseStr(stack[-1])
                 stack.pop()
             else:
                 stack[-1] += char
