@@ -4,6 +4,9 @@ class Solution:
         # Count = 1, Store first value as min, iterate until we found curr - min > k
         # then store this curr as min, count += 1
 
+        # Time: O(nlog(n) + O(n)) ~ O(nlog(n)), loglinear
+        # Space: O(1), constant
+
         nums.sort()
 
         count = 1
