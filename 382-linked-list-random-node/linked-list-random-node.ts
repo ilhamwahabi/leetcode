@@ -16,7 +16,7 @@ class Solution {
     constructor(head: ListNode | null) {
         let curr = head
         while (curr) {
-            this.items.push(curr)
+            this.items.push(curr.val)
             curr = curr.next
         }
     }
@@ -26,7 +26,7 @@ class Solution {
         const rand = Math.random()
         const index = Math.floor(rand * length)
 
-        return this.items[index].val
+        return this.items[index]
     }
 }
 
