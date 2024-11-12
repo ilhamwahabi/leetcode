@@ -9,9 +9,7 @@ function findXSum(nums: number[], k: number, x: number): number[] {
     result.push(sum)
 
     for (let i = 1; i <= nums.length - k; i++) {
-        map[nums[i-1]]--
-        if (map[nums[i-1]] === 0) delete map[nums[i-1]]
-        
+        map[nums[i-1]]--        
         map[nums[i+k-1]] ? map[nums[i+k-1]]++ : map[nums[i+k-1]] = 1
 
         const sum = countSum(map, x)
