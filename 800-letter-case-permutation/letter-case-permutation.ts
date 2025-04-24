@@ -3,17 +3,21 @@ function letterCasePermutation(s: string): string[] {
     // Iterate char from index 0 to string.length - 1
     // Terminate: length is same
 
-    const set = new Set<string>()
+    const result = []
 
     function backtracking(str = "", i = 0) {
         if (str.length === s.length) {
-            set.add(str)
+            result.push(str)
         } else {
-            backtracking(str + s[i].toLowerCase(), i + 1)
-            backtracking(str + s[i].toUpperCase(), i + 1)
+            if (s[i].match(/[\d]/)) {
+                backtracking(str + s[i], i + 1)
+            } else {
+                backtracking(str + s[i].toLowerCase(), i + 1)
+                backtracking(str + s[i].toUpperCase(), i + 1)
+            }
         }
     }
     backtracking()
 
-    return [...set]
+    return result
 };
