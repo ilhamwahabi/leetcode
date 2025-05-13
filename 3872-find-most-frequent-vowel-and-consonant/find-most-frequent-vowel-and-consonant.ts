@@ -6,15 +6,17 @@ function maxFreqSum(s: string): number {
     // Time: O(n), iteration of s
     // Space: O(n), store the occurance
 
-    const map = {}
+    const map = new Array(26).fill(0)
+    const vowels = new Set(["a", "i", "u", "e", "o"])
     let maxVowel = 0
     let maxNonVowel = 0
 
     for (const char of s) {
-        map[char] ? map[char]++ : map[char] = 1
+        const index = char.charCodeAt(0) - 97
+        map[index]++
 
-        if (char.match(/[aiueo]/)) maxVowel = Math.max(maxVowel, map[char])
-        else maxNonVowel = Math.max(maxNonVowel, map[char])
+        if (vowels.has(char)) maxVowel = Math.max(maxVowel, map[index])
+        else maxNonVowel = Math.max(maxNonVowel, map[index])
     }
 
     return maxVowel + maxNonVowel
