@@ -8,12 +8,16 @@ function maxProduct(n: number): number {
     let l1 = -Infinity;
     let l2 = -Infinity;
 
-    for (const char of String(n)) {
-        if (+char > l1) {
+    let curr = n
+    while (curr > 0) {
+        const mod = curr % 10
+        curr = Math.floor(curr / 10)
+
+        if (mod > l1) {
             l2 = l1
-            l1 = +char
-        } else if (+char > l2) {
-            l2 = +char
+            l1 = mod
+        } else if (mod > l2) {
+            l2 = mod
         }
     }
 
