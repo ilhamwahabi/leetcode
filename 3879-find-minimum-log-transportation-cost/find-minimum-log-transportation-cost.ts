@@ -1,35 +1,22 @@
 function minCuttingCost(n: number, m: number, k: number): number {
-    let cost = 0
-    
-    if (n > k) {
+    return findCost(n, k) + findCost(m, k)
+};
+
+const findCost = (x: number, k: number) => {
+    if (x > k) {
         let min = Infinity
         
-        for (let i = 1; i < n; i++) {
+        for (let i = 1; i < x; i++) {
             const len1 = i
-            const len2 = n - i
-
-            if (len1 <= k && len2 <= k) {
-                min = Math.min(len1 * len2, min)
-            }
-        }
-
-        cost += min
-    }
-
-    if (m > k) {
-        let min = Infinity
-        
-        for (let i = 1; i < m; i++) {
-            const len1 = i
-            const len2 = m - i
+            const len2 = x - i
             
             if (len1 <= k && len2 <= k) {
                 min = Math.min(len1 * len2, min)
             }
         }
 
-        cost += min
+        return min
     }
 
-    return cost
-};
+    return 0
+}
