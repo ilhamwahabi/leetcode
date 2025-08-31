@@ -13,19 +13,9 @@ function gcdOfOddEvenSums(n: number): number {
     let odd = n * (n + 0)
     let even = n * (n + 1)
 
-    const oddFact = new Set([odd])
     for (let i = Math.floor(odd / 2); i > 0; i--) {
-        if (odd % i === 0) oddFact.add(i)
+        if (odd % i === 0 && even % i === 0) return i
     }
 
-    const evenFact = new Set([even])
-    for (let i = even / 2; i > 0; i--) {
-        if (even % i === 0) evenFact.add(i)
-    }
-
-    for (const fact of oddFact) {
-        if (evenFact.has(fact)) return fact
-    }
-
-    return -1
+    return odd
 };
