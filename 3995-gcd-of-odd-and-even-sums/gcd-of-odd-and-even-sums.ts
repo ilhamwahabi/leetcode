@@ -10,11 +10,8 @@ function gcdOfOddEvenSums(n: number): number {
     // Time: O(n), iterate number and fact
     // Space: O(n), storing facts
 
-    let odd = 0
-    let even = 0
-
-    for (let i = 1; i < 2 * n; i += 2) odd += i
-    for (let i = 2; i < 2 * n + 1; i += 2) even += i
+    let odd = n * (n + 0)
+    let even = n * (n + 1)
 
     const oddFact = new Set([odd])
     for (let i = Math.floor(odd / 2); i > 0; i--) {
