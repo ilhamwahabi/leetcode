@@ -16,7 +16,5 @@ function processStr(s: string): string {
         }
     }
 
-    console.log(result)
-
     return result.join("")
 };
