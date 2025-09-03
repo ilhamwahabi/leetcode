@@ -1,12 +1,15 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
-    for (let i = 0; i < matrix.length; i++) {
-        const first = matrix[i][0]
-        const last = matrix[i][matrix[i].length - 1]
+    let low = 0
+    let high = matrix.length - 1
 
-        if (target < first) return false
-        if (first <= target && target <= last) {
-            return binarySearch(matrix[i], target)
+    while (low <= high) {
+        let mid = low + Math.floor((high - low) / 2)
+
+        if (target >= matrix[mid][0] && target <= matrix[mid][matrix[mid].length - 1]) {
+            return binarySearch(matrix[mid], target)
         }
+        if (target > matrix[mid][0]) low = mid + 1
+        if (target < matrix[mid][0]) high = mid - 1
     }
 
     return false
