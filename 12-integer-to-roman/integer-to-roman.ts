@@ -14,24 +14,26 @@ function intToRoman(num: number): string {
         if (str.length - i === 3) type = "100"
         if (str.length - i === 2) type = "10"
         if (str.length - i === 1) type = "1"
+
+        const digit = +str[i]
         
-        if (+str[i] < 4) {
-            if (type === "1000") result += "M".repeat(+str[i])
-            if (type === "100") result += "C".repeat(+str[i])
-            if (type === "10") result += "X".repeat(+str[i])
-            if (type === "1") result += "I".repeat(+str[i])     
+        if (digit < 4) {
+            if (type === "1000") result += "M".repeat(digit)
+            if (type === "100") result += "C".repeat(digit)
+            if (type === "10") result += "X".repeat(digit)
+            if (type === "1") result += "I".repeat(digit)     
         }
-        else if (+str[i] === 4) {
+        else if (digit === 4) {
             if (type === "100") result += "CD"
             if (type === "10") result += "XL"
             if (type === "1") result += "IV" 
         }
-        else if (+str[i] < 9) {
-            if (type === "100") result += "D" + "C".repeat(+str[i] - 5)
-            if (type === "10") result += "L" + "X".repeat(+str[i] - 5)
-            if (type === "1") result += "V" + "I".repeat(+str[i] - 5)
+        else if (digit < 9) {
+            if (type === "100") result += "D" + "C".repeat(digit - 5)
+            if (type === "10") result += "L" + "X".repeat(digit - 5)
+            if (type === "1") result += "V" + "I".repeat(digit - 5)
         }
-        else if (+str[i] === 9) {
+        else if (digit === 9) {
             if (type === "100") result += "CM"
             if (type === "10") result += "XC"
             if (type === "1") result += "IX" 
