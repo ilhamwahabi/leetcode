@@ -36,7 +36,5 @@ function isSymmetric(root: TreeNode | null): boolean {
     recursion(root.left, "left")
     recursion(root.right, "right")
 
-    console.log({ left, right })
-
     return left === right
 };
