@@ -4,14 +4,14 @@ function maximumScore(nums: number[]): number {
     // Iterate from 0 to n - 1, track the max of prefixSum(i) - suffixMin(i)
 
     const prefixSum = []
-    for (const num of nums) {
-        prefixSum.push(num + (prefixSum.at(-1) ?? 0))
-    }
-
     const suffixMin = []
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (suffixMin.length === 0) suffixMin.push(nums[i])
-        else suffixMin.push(Math.min(nums[i], suffixMin.at(-1)))
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i]
+        prefixSum.push(num + (prefixSum.at(-1) ?? 0))
+
+        const min = nums[nums.length - 1 - i]
+        if (suffixMin.length === 0) suffixMin.push(min)
+        else suffixMin.push(Math.min(min, suffixMin.at(-1)))
     }
     suffixMin.reverse()
 
