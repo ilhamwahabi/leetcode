@@ -1,4 +1,10 @@
 function partitionLabels(s: string): number[] {
+    const last = {}
+    for (let i = 0; i < s.length; i++) {
+        const char = s[i]
+        last[char] = i
+    }
+
     const result = []
 
     let a = 0
@@ -7,13 +13,7 @@ function partitionLabels(s: string): number[] {
     let curr = a
     while (curr < s.length) {
         const char = s[curr]
-
-        for (let i = s.length - 1; i > curr; i--) {
-            if (s[i] === char) {
-                z = Math.max(z, i)
-                break
-            }
-        }
+        z = Math.max(z, last[char])
 
         if (curr === z) {
             result.push(z - a + 1)
