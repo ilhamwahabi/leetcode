@@ -11,13 +11,24 @@
  */
 
 function detectCycle(head: ListNode | null): ListNode | null {
-    const visited = new Set()
-    let curr = head
+    let slow = head
+    let fast = head
 
-    while (curr) {
-        if (visited.has(curr)) return curr
-        visited.add(curr)
-        curr = curr.next
+    while (fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+
+        // We found there is cycle
+        if (slow === fast) {
+            slow = head
+
+            while (slow !== fast) {
+                slow = slow.next
+                fast = fast.next
+            }
+
+            return slow
+        }
     }
     
     return null
