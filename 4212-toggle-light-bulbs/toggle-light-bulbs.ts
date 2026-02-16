@@ -1,10 +1,10 @@
 function toggleLightBulbs(bulbs: number[]): number[] {
-    const set = new Set<number>()
+    const arr = Array(100)
 
     for (const bulb of bulbs) {
-        if (set.has(bulb)) set.delete(bulb)
-        else set.add(bulb)
+        if (arr[bulb - 1]) arr[bulb - 1] = undefined
+        else arr[bulb - 1] = bulb
     }
 
-    return Array.from(set).toSorted((a,b) => a - b)
+    return arr.filter(item => Boolean(item))
 };
