@@ -1,12 +1,22 @@
 function limitOccurrences(nums: number[], k: number): number[] {
-    const map = {}
-
     const result = []
-    for (const num of nums) {
-        if (!map[num] || map[num] < k) {
-            result.push(num)
-            map[num] ? map[num]++ : map[num] = 1
+
+    let i = 0
+    let j = 0
+    let curr = nums[j]
+    while (j < nums.length) {
+        if (nums[j] !== curr) {
+            curr = nums[j]
+            i = 0
         }
+
+        if (i < k) {
+            result.push(nums[j])
+            i++
+        }
+
+        j++
     }
+
     return result
 };
