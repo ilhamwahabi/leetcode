@@ -13,16 +13,17 @@
  */
 
 function binaryTreePaths(root: TreeNode | null): string[] {
-    const res = []
+    const result = []
 
-    function traverse(root: TreeNode | null, s: string) {
-        if (!root.left && !root.right) res.push(s ? `${s}->${root.val}` : `${root.val}`)
-        else {
-            if (root.left) traverse(root.left, s ? `${s}->${root.val}` : `${root.val}`)
-            if (root.right) traverse(root.right, s ? `${s}->${root.val}` : `${root.val}`)
-        }
+    function recursion(root: TreeNode | null, str = "") {
+        if (!root) return null
+
+        const join = str + (str === "" ? "" : "->") + root.val
+        if (!root.left && !root.right) result.push(join)
+        recursion(root.left, join)
+        recursion(root.right, join)
     }
-    traverse(root, "")
+    recursion(root)
 
-    return res
+    return result
 };
