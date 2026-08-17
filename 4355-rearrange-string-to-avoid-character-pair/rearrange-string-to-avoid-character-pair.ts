@@ -1,19 +1,20 @@
 function rearrangeString(s: string, x: string, y: string): string {
     // Iterate s, check each character
-    // if it's x then append to the front
+    // if it's y then append to the ys
 
     // Time: O(n)
     // Space: O(1)
 
-    let result = ""
+    let ys = ""
+    let elses = ""
 
     for (const char of s) {
         if (char === y) {
-            result = char + result
+            ys += char
         } else {
-            result += char
+            elses += char
         }
     }
 
-    return result
+    return ys + elses
 };
