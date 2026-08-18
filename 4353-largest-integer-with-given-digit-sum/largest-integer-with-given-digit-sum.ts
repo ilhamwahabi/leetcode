@@ -1,19 +1,12 @@
 function largestInteger(n: number, s: number): number {
-    // Start from biggest possible number to 0
-    // Check if it's digit === s then return it
+    let curr = s
+    let digits = 0
+    for (let i = 1; i <= n; i++) {
+        const digit = Math.min(9, curr)
 
-    const max = Math.pow(10, n) - 1
-    for (let i = max; i >= 0; i--) {
-        let digit = 0
-
-        let curr = i
-        while (curr > 0) {
-            digit += curr % 10
-            curr = Math.floor(curr / 10)
-        }
-
-        if (digit === s) return i
+        digits = (digits * 10) + digit
+        curr -= digit
     }
 
-    return -1
+    return curr === 0 ? digits : -1
 };
