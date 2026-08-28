@@ -4,29 +4,20 @@ class Solution {
         // Create array of minScore, iterate nums from end to start, reverse the array
         // Iterate nums, count instability score and store the index if <= k
 
-        // Time: O(n + n + n + n + n)
-        // Space: O(n + n)
+        // Time: O(n + n + n)
+        // Space: O(n)
 
-        var maxScore: [Int] = []
-        var maxs = nums.first ?? -1
-        for num in nums {
-            maxs = max(maxs, num)
-            maxScore.append(maxs)
+        var minScore = [Int](repeating: 0, count: nums.count)
+        var mins = Int.max
+        for i in stride(from: nums.count - 1, through: 0, by: -1) {
+            mins = min(mins, nums[i])
+            minScore[i] = mins
         }
 
-        var minScore: [Int] = []
-        var mins = nums.last ?? -1
-        for num in nums.reversed() {
-            mins = min(mins, num)
-            minScore.append(mins)
-        }
-        minScore.reverse()
-
+        var maxs = Int.min
         for i in nums.indices {
-            let instability = maxScore[i] - minScore[i]
-            if instability <= k {
-                return i
-            }
+            maxs = max(maxs, nums[i])
+            if maxs - minScore[i] <= k { return i }
         }
         return -1
     }
