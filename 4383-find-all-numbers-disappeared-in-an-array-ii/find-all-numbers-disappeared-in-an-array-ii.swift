@@ -9,19 +9,15 @@ class Solution {
         // Time: O(n + m)
         // Space: O(n + m + 2)
 
-        var map: [Int:Bool] = [:]
-        for num in nums {
-            map[num] = true
-        }
-
+        var map: Set<Int> = Set(nums)
         var resultArr: [[Int]] = []
 
         var rangeArr: [Int] = []
         for i in stride(from: lower, through: upper, by: 1) {
-            if map[i] == nil && (i == lower || map[i - 1] != nil) {
+            if !map.contains(i) && (i == lower || map.contains(i - 1)) {
                 rangeArr.append(i)
             }
-            if map[i] == nil && (i == upper || map[i + 1] != nil) {
+            if !map.contains(i) && (i == upper || map.contains(i + 1)) {
                 rangeArr.append(i)
             }
             if rangeArr.count == 2 {
