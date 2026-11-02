@@ -1,13 +1,9 @@
 class Solution {
     func threeFibonacciSum(_ n: Int) -> Bool {
-        var fibs = [0,1,1]
-        var sum = fibs[0] + fibs[1] + fibs[2]
-        while (sum < n) {
-            let item = fibs[fibs.count - 1] + fibs[fibs.count - 2]
-            sum += item - fibs[fibs.count - 3]
-
-            fibs.append(item)
+        var (a,b,c) = (0, 1, 1)
+        while a + b + c < n {
+            (a, b, c) = (b, c, b + c)
         }
-        return sum == n
+        return a + b + c == n
     }
 }
